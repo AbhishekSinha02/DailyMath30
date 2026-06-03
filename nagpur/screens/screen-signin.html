@@ -1,0 +1,36 @@
+  <section id="screen-signin" class="screen">
+    <div class="auth-wrap">
+
+      <div class="brand">
+        <img src="assets/icon.svg" class="brand-logo" alt="Donnibo">
+        <h1 class="brand-name">Donnibo</h1>
+        <p class="brand-tagline">See yourself grow.</p>
+      </div>
+
+      <div class="card auth-card">
+        <h2>Welcome back</h2>
+        <p class="subtitle">Sign in to continue your daily practice</p>
+
+        <form id="signin-form" novalidate autocomplete="on">
+
+          <div class="form-group">
+            <label for="si-loginid">User ID</label>
+            <input type="text" id="si-loginid" name="loginId" placeholder="Your User ID" autocomplete="username" required>
+            <span class="field-error" id="err-si-loginid"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="si-password">Password</label>
+            <input type="password" id="si-password" name="password" placeholder="Your password" autocomplete="current-password" required>
+            <span class="field-error" id="err-si-password"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" id="signin-btn">Sign In →</button>
+
+          <p class="auth-switch">New here? <button type="button" class="link-btn" id="btn-to-signup">Create a free account</button></p>
+
+        </form>
+      </div>
+
+    </div>
+  </section>

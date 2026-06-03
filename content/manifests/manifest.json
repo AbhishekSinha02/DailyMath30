@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "shards": {
+    "school-2":       "manifest-grade-2.json",
+    "school-3":       "manifest-grade-3.json",
+    "school-4":       "manifest-grade-4.json",
+    "school-5":       "manifest-grade-5.json",
+    "school-6":       "manifest-grade-6.json",
+    "school-7":       "manifest-grade-7.json",
+    "school-8":       "manifest-grade-8.json",
+    "school-9":       "manifest-grade-9.json",
+    "school-10":      "manifest-grade-10.json",
+    "school-11":      "manifest-grade-11.json",
+    "school-12":      "manifest-grade-12.json",
+    "college":        "manifest-college.json",
+    "professional":   "manifest-professional.json",
+    "regional":       "manifest-regional.json",
+    "flash":          "manifest-flash.json"
+  }
+}

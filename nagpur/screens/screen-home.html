@@ -1,0 +1,158 @@
+  <section id="screen-home" class="screen">
+
+    <!-- E-002: laptop left nav rail (≥1024px) — reuses drawer handlers, hidden on phone/tablet -->
+    <nav class="home-nav-rail" aria-label="Primary">
+      <img src="assets/icon.svg" class="rail-logo" alt="Donnibo">
+      <button class="rail-item" onclick="_goHome()">
+        <span class="rail-icon">🏠</span><span class="rail-label">Home</span>
+      </button>
+      <button class="rail-item" id="rail-practice-btn" onclick="_navPractice()">
+        <span class="rail-icon">📖</span><span class="rail-label">Practice</span>
+      </button>
+      <button class="rail-item" onclick="_startDrill('tables')">
+        <span class="rail-icon">⚡</span><span class="rail-label">Drills</span>
+      </button>
+      <button class="rail-item" onclick="openJourney()">
+        <span class="rail-icon">🌱</span><span class="rail-label">Journey</span>
+      </button>
+      <button class="rail-item" onclick="_goHome()">
+        <span class="rail-icon">🌍</span><span class="rail-label">GK</span>
+      </button>
+      <button class="rail-item" onclick="openSettings()">
+        <span class="rail-icon">⚙️</span><span class="rail-label">Settings</span>
+      </button>
+      <span class="rail-spacer"></span>
+      <button class="rail-item" onclick="signOut()">
+        <span class="rail-icon">↩</span><span class="rail-label">Sign Out</span>
+      </button>
+    </nav>
+
+    <header class="app-header">
+      <div class="app-header-brand" onclick="_goHome()" style="cursor:pointer">
+        <img src="assets/icon.svg" class="app-logo" alt="Donnibo">
+        <span class="app-brand-name">Donnibo</span>
+      </div>
+      <div class="app-header-meta" id="app-header-meta"></div>
+      <div class="app-header-right">
+        <button class="menu-btn" id="menu-btn" onclick="_openDrawer()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="avatar-ring-wrap" id="avatar-ring-wrap" onclick="toggleUserMenu()" style="cursor:pointer">
+          <svg class="avatar-ring-svg" viewBox="0 0 52 52" fill="none">
+            <circle class="avatar-ring-track" cx="26" cy="26" r="22" stroke-width="3"/>
+            <circle class="avatar-ring-fill" id="avatar-ring-fill" cx="26" cy="26" r="22"
+                    stroke-width="3" stroke-linecap="round" transform="rotate(-90 26 26)"/>
+          </svg>
+          <div class="user-avatar" id="user-avatar">?</div>
+          <span class="level-badge" id="level-badge"></span>
+        </div>
+        <div class="user-menu hidden" id="user-menu">
+          <button class="user-menu-item" onclick="openJourney()">🌱 My Journey</button>
+          <button class="user-menu-item" onclick="openSettings()">⚙ Settings</button>
+          <button class="user-menu-item" onclick="signOut()">Sign Out</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="streak-bar" id="streak-bar">
+      <span class="streak-flame-sm" id="streak-flame">🔥</span>
+      <span class="streak-num" id="streak-count">0</span>
+      <span class="streak-label-sm" id="streak-label">days</span>
+      <span class="streak-sep">·</span>
+      <span class="streak-stat-val" id="stat-accuracy">—</span>
+      <span class="streak-stat-key">accuracy</span>
+      <span class="streak-sep">·</span>
+      <span class="streak-stat-val" id="stat-sessions">0</span>
+      <span class="streak-stat-key">sessions</span>
+      <span class="streak-sep">·</span>
+      <span class="streak-stat-val" id="stat-time">0m</span>
+      <span class="streak-stat-key">practiced</span>
+      <span class="streak-sep">·</span>
+      <span class="streak-best-sm">Best: <strong id="streak-best">0</strong>d</span>
+      <span id="streak-milestones"></span>
+    </div>
+
+    <div id="subject-tabs" class="subject-tabs" style="display:none"></div>
+
+    <div class="home-wrap">
+
+      <div class="home-content" id="home-content">
+        <div id="greeting-wrap"></div>
+        <div id="today-card-wrap"></div>
+        <div id="flash-drill-wrap"></div>
+
+      <div id="goals-list" class="goals-list">
+        <div class="skeleton-shelf" aria-hidden="true">
+          <div class="skeleton skel-label"></div>
+          <div class="skel-cards">
+            <div class="skeleton skel-card"></div>
+            <div class="skeleton skel-card"></div>
+            <div class="skeleton skel-card"></div>
+          </div>
+        </div>
+        <div class="skeleton-shelf" aria-hidden="true">
+          <div class="skeleton skel-label"></div>
+          <div class="skel-cards">
+            <div class="skeleton skel-card"></div>
+            <div class="skeleton skel-card"></div>
+            <div class="skeleton skel-card"></div>
+          </div>
+        </div>
+      </div>
+
+        <div id="daily-quest-wrap"></div>
+        <div id="reward-notif-wrap"></div>
+      <div id="partner-footer-wrap"></div>
+
+      </div><!-- /home-content -->
+
+      <div class="city-strip hidden" id="city-strip">
+        <span class="city-strip-dot">📍</span>
+        <span class="city-strip-text" id="city-strip-text"></span>
+      </div>
+
+    </div><!-- /home-wrap -->
+
+    <!-- ── Navigation Drawer — direct child of #screen-home, outside home-wrap
+         so no overflow container can interfere with its position:fixed stacking ── -->
+    <div class="app-drawer" id="app-drawer">
+      <div class="drawer-overlay" id="drawer-overlay" onclick="_closeDrawer()"></div>
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <div class="drawer-brand">
+            <img src="assets/icon.svg" class="drawer-logo" alt="Donnibo">
+            <span class="drawer-brand-name">Donnibo</span>
+          </div>
+          <button class="drawer-close" onclick="_closeDrawer()" aria-label="Close menu">✕</button>
+        </div>
+        <nav class="drawer-nav">
+          <button class="drawer-item" onclick="_startDrill('tables');_closeDrawer()">
+            <span class="drawer-icon">⚡</span>
+            <span class="drawer-label">Flash Drills</span>
+          </button>
+          <button class="drawer-item" id="drawer-practice-btn" onclick="_navPractice();_closeDrawer()">
+            <span class="drawer-icon">📖</span>
+            <span class="drawer-label">Practice</span>
+          </button>
+          <button class="drawer-item" onclick="openJourney()">
+            <span class="drawer-icon">🌱</span>
+            <span class="drawer-label">My Journey</span>
+          </button>
+          <button class="drawer-item" onclick="_goHome();_closeDrawer()">
+            <span class="drawer-icon">🌍</span>
+            <span class="drawer-label">Today's GK</span>
+          </button>
+          <button class="drawer-item" onclick="openSettings();_closeDrawer()">
+            <span class="drawer-icon">⚙️</span>
+            <span class="drawer-label">Settings</span>
+          </button>
+          <button class="drawer-item" onclick="signOut()">
+            <span class="drawer-icon">↩</span>
+            <span class="drawer-label">Sign Out</span>
+          </button>
+        </nav>
+        <div class="drawer-footer" id="drawer-footer"></div>
+      </div>
+    </div>
+
+  </section>
