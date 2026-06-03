@@ -360,6 +360,7 @@ async function _loadFormulaDrill() {
   const grade = state.user?.grade ? parseInt(state.user.grade) : 7;
   const g     = grade >= 9 ? 8 : grade >= 7 ? 7 : grade >= 6 ? 6 : 5;
   const urls  = [
+    `/content/flash/formulas-grade${g}.json`,
     _rawUrl(`app/ui/questions/flash/formulas-grade${g}.json`),
     `questions/flash/formulas-grade${g}.json`
   ];

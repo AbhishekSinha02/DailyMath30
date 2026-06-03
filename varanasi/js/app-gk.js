@@ -125,6 +125,7 @@ async function _loadTodayFact() {
   const today = new Date();
   const key   = String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
   const urls  = [
+    '/content/gk/today-in-india.json',
     _rawUrl('app/ui/questions/gk/today-in-india.json'),
     'questions/gk/today-in-india.json'
   ];
